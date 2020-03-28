@@ -2,9 +2,9 @@ export interface Context {
     dialogName: string;
     stack: string[];
     options: boolean;
-    message: "";
-    messages: string[];
-    messageId: number;
+    // message: "";
+    // messages: string[];
+    // messageId: number;
     turn: number;
 
 }

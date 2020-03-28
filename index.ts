@@ -1,3 +1,5 @@
 import dialogs from './src/small_contents';
+import { init } from './src/index';
 
-console.log("Works", dialogs[0].intro[0].text)
+init(dialogs);
+console.log("Works")
