@@ -1,5 +1,9 @@
 
 import { init } from './src/index';
+import { display } from './src/display';
 
-init();
+
 console.log("Works")
+
+display(init(), document.getElementById('display'));
+

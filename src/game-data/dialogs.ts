@@ -9,8 +9,8 @@ const dialogs: Schema.Dialog[] = [
         ],
         options: [
             { text: "Start a new game {{$turn}}", go: "start" },
-            { text: "See it!", run: "$flags.seen=1", if: "!$flags.seen", go: "return" },
-            { text: "Unsee it!", run: "$flags.seen=0", if: "$flags.seen", go: "return" },
+            { text: "See it!", run: "$flags.seen=1", if: "!$flags.seen" },
+            { text: "Unsee it!", run: "$flags.seen=0", if: "$flags.seen" },
 
             { text: "About this game", go: "about" }
         ]
@@ -47,6 +47,10 @@ const dialogs: Schema.Dialog[] = [
                 if: "$flags.looked_around",
                 go: "village",
                 run: "$TURN(2)"
+            },
+            {
+                text: "Go back to INIT",
+                go: "init"
             }
 
             // {text:"Go towards the village",if:"$flags.looked_around",go:"village"}

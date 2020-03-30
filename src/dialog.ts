@@ -11,6 +11,7 @@ const filterOptions = (options: Schema.DialogOption[], ctx: Schema.Context) => o
 const interpolateOptions = (options: Schema.DialogOption[], ctx: Schema.Context) => options.map(option => Screept.interpolate(option.text, ctx, verbs))
 
 export const presentDialog = (data: Schema.Dialog[], ctx: Schema.Context, dialogName: string = ctx.dialogName) => {
+    console.log("PRESENTING DIALOG", dialogName)
     const dialog = getDialog(data, dialogName);
     const result = { intro: "", options: [] }
     result.intro = Screept.interpolate(dialog.intro
@@ -28,7 +29,8 @@ export const chooseOption = (data: Schema.Dialog[], ctx: Schema.Context, optionN
     }
     if (option.go) {
         if (option.go === "return") {
-            ctx.dialogName = ctx.stack.pop()
+            ctx.stack.pop()
+            ctx.dialogName = lastElement(ctx.stack)
         } else {
             if (option.go !== ctx.dialogName) {
                 ctx.stack.push(option.go)
@@ -39,5 +41,6 @@ export const chooseOption = (data: Schema.Dialog[], ctx: Schema.Context, optionN
         //stay in the same dialog, just run code
     }
     console.log("OPTION", option);
+    console.log("CHANGE TO", ctx.dialogName)
     console.log("STACK", ctx.stack);
 }
