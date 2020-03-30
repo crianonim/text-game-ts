@@ -1,11 +1,17 @@
-import * as Schema from './schema';
+import * as Schema from '../schema';
 const dialogs: Schema.Dialog[] = [
     {
         id: "init",
-        intro: [{ text: "Welcome to TEXT-GAME. What would you like to do?" }],
+        intro: [
+            { if: "$flags.seen", text: "You've seen it! {{$CURRENT_DIALOG()}}" },
+            { text: "Welcome to TEXT-GAME.{{$CURRENT_DIALOG()}} What would you like to do?" },
+
+        ],
         options: [
-            { text: "Start a new game", go: "start" },
-            //     { text: "Load game", run: "$LOAD()", if: "$IS_SAVED()", go: "return" },
+            { text: "Start a new game {{$turn}}", go: "start" },
+            { text: "See it!", run: "$flags.seen=1", if: "!$flags.seen", go: "return" },
+            { text: "Unsee it!", run: "$flags.seen=0", if: "$flags.seen", go: "return" },
+
             { text: "About this game", go: "about" }
         ]
     },
