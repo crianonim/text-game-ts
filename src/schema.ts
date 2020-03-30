@@ -6,6 +6,7 @@ export interface Context {
     // messages: string[];
     // messageId: number;
     turn: number;
+    [key: string]: any;
 
 }
 
@@ -28,4 +29,8 @@ export interface Dialog {
     intro: DialogIntro[];
     options: DialogOption[];
     run?: string;
+}
+
+interface Verb {
+    (ctx: Context, ...arg: any): any
 }
