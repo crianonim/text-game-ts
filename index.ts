@@ -1,5 +1,5 @@
-import dialogs from './src/small_contents';
+
 import { init } from './src/index';
 
-init(dialogs);
+init();
 console.log("Works")
